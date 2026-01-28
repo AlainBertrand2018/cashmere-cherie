@@ -19,8 +19,31 @@ const airbnb = {
     frame: 0
 };
 
+let loadedCount = 0;
+const loaderBar = document.getElementById('loader-bar');
+const loaderPercentage = document.getElementById('loader-percentage');
+const preloader = document.getElementById('preloader');
+
+const updateProgress = () => {
+    loadedCount++;
+    const progress = Math.round((loadedCount / frameCount) * 100);
+    loaderBar.style.width = `${progress}%`;
+    loaderPercentage.textContent = `${progress}%`;
+
+    if (loadedCount === frameCount) {
+        setTimeout(() => {
+            preloader.classList.add('loaded');
+            // Trigger initial scroll animations
+            ScrollTrigger.refresh();
+            render();
+        }, 500);
+    }
+};
+
 for (let i = 0; i < frameCount; i++) {
     const img = new Image();
+    img.onload = updateProgress;
+    img.onerror = updateProgress; // Avoid getting stuck if one image fails
     img.src = currentFrame(i);
     images.push(img);
 }
@@ -35,10 +58,8 @@ gsap.to(airbnb, {
         end: "bottom bottom",
         scrub: 0.5,
     },
-    onUpdate: render // use animation onUpdate instead of scrollTrigger's onUpdate
+    onUpdate: render
 });
-
-images[0].onload = render;
 
 function render() {
     context.clearRect(0, 0, canvas.width, canvas.height);

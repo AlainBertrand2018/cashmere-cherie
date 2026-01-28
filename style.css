@@ -13,6 +13,59 @@
     box-sizing: border-box;
 }
 
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-ivory);
+    z-index: 10001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    width: 300px;
+}
+
+.loader-brand {
+    font-size: 24px;
+    letter-spacing: 0.5em;
+    margin-bottom: 30px;
+    color: var(--color-charcoal);
+}
+
+.loader-bar-container {
+    width: 100%;
+    height: 1px;
+    background: var(--color-soft-grey);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#loader-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--color-charcoal);
+    transition: width 0.3s ease;
+}
+
+#loader-percentage {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--color-stone);
+}
+
 body {
     background-color: var(--color-ivory);
     color: var(--color-charcoal);
