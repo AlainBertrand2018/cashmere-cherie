@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashmere Cherie | Luxury Knitwear & Shisha Lounge</title>
-    <meta name="description" content="Cashmere Cherie - A sophisticated luxury concept store blending premium knitwear with an elegant shisha lounge. Quiet luxury, ethereal textures.">
+    <meta name="description"
+        content="Cashmere Cherie - A sophisticated luxury concept store blending premium knitwear with an elegant shisha lounge. Quiet luxury, ethereal textures.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
     <div id="announcement-bar">
         <span>Free Delivery All Over the Island.</span>
@@ -184,6 +189,35 @@
         </div>
     </footer>
 
+    <div id="chatbot-container">
+        <button id="chatbot-trigger" aria-label="Chat with Kikyo">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+        <div id="chat-window">
+            <div class="chat-header">
+                <div class="header-info">
+                    <span class="bot-name">KIKYO</span>
+                    <span class="bot-status">Concierge</span>
+                </div>
+                <button id="close-chat">&times;</button>
+            </div>
+            <div id="chat-messages">
+                <div class="message bot-message">
+                    Greetings. I am Kikyo, your Cashmere Cherie concierge. How may I assist you in your pursuit of
+                    softness today?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="/main.js"></script>
 </body>
+
 </html>

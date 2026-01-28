@@ -116,3 +116,59 @@ window.addEventListener('resize', () => {
 
 // Initialize
 revealSections();
+
+// Chatbot Logic
+const chatTrigger = document.getElementById('chatbot-trigger');
+const chatWindow = document.getElementById('chat-window');
+const closeChat = document.getElementById('close-chat');
+const sendMessage = document.getElementById('send-message');
+const userInput = document.getElementById('user-input');
+const chatMessages = document.getElementById('chat-messages');
+
+const botResponses = {
+    greetings: ["Hello. I am Kikyo. How may I assist you?", "Greetings. Looking for something specific in our collection?", "Welcome to Cashmere Cherie. I am here to help."],
+    delivery: ["We offer free delivery all over the island, typically within 2-3 business days.", "Our delivery service is complimentary across the entire island."],
+    shisha: ["Our shisha lounge is a sanctuary of repose. Would you like to know about our premium blends?", "The lounge opens at 6 PM daily. It features exclusive charcoal-aged blends."],
+    cashmere: ["Our cashmere is sourced from the highest plateaus, ensuring unparalleled softess.", "We specialize in ultra-fine knitwear. Are you interested in our sweaters or scarves?"],
+    default: ["That is intriguing. Would you like to speak with a human concierge, or shall I find more details on that for you?", "I am learning the nuances of your request. Could you elaborate?"]
+};
+
+const addMessage = (text, sender) => {
+    const msg = document.createElement('div');
+    msg.className = `message ${sender}-message`;
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+};
+
+const handleChat = () => {
+    const text = userInput.value.trim().toLowerCase();
+    if (!text) return;
+
+    addMessage(userInput.value, 'user');
+    userInput.value = '';
+
+    setTimeout(() => {
+        let response = botResponses.default[Math.floor(Math.random() * botResponses.default.length)];
+
+        if (text.includes('hello') || text.includes('hi')) response = botResponses.greetings[Math.floor(Math.random() * botResponses.greetings.length)];
+        else if (text.includes('delivery') || text.includes('shipping')) response = botResponses.delivery[Math.floor(Math.random() * botResponses.delivery.length)];
+        else if (text.includes('shisha') || text.includes('lounge')) response = botResponses.shisha[Math.floor(Math.random() * botResponses.shisha.length)];
+        else if (text.includes('cashmere') || text.includes('knit') || text.includes('material')) response = botResponses.cashmere[Math.floor(Math.random() * botResponses.cashmere.length)];
+
+        addMessage(response, 'bot');
+    }, 1000);
+};
+
+chatTrigger.addEventListener('click', () => {
+    chatWindow.classList.toggle('active');
+});
+
+closeChat.addEventListener('click', () => {
+    chatWindow.classList.remove('active');
+});
+
+sendMessage.addEventListener('click', handleChat);
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleChat();
+});
