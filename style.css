@@ -226,10 +226,13 @@ a {
 
 .hero-overlay h2 {
     font-size: 12vw;
-    color: var(--color-charcoal);
+    color: rgba(26, 26, 26, 0.4);
+    /* Brand charcoal with 40% opacity */
+    mix-blend-mode: multiply;
     margin: -2vw 0;
     opacity: 0.95;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    text-shadow: none;
+    /* Removed for better blend effect */
 }
 
 /* Section Header */
